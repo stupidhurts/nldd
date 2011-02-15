@@ -282,7 +282,10 @@ void init_pacman(WINDOW* wnd, int num_ghosts);
 #define ETH_ALEN	6
 
 struct ne2k_phy {
-	unsigned short portaddr;
+	unsigned short nicaddr;
+	unsigned short asicaddr;
+	unsigned short irq;
+	/* we want to put rx / tx ring buffer addresses here */
 	union {
 		unsigned char byte[ETH_ALEN];
 		long long n;
@@ -292,5 +295,6 @@ struct ne2k_phy {
 /* everyone has access to the card? */
 struct ne2k_phy ne2k_phy;
 
+void ne2k_print_mac(WINDOW* wnd, struct ne2k_phy *phy);
 void init_ne2k();
 #endif
